@@ -51,7 +51,7 @@ mask-studio/               Mask Studio
 softpoint-3d/              3D Studio (components/ e types/ em TypeScript, como no original)
 softpoint-resizer/         Softpoint Resizer — e o molde: copie para começar uma ferramenta
 gradient-studio/           Gradient Studio
-grid-maker/                Grid Maker
+gerador-de-grids/          Gerador de grids
 ```
 
 ## Ferramentas
@@ -61,7 +61,7 @@ grid-maker/                Grid Maker
 | `/mask-studio/` | **Mask Studio** — foto revelada por uma grade de furos softpoint, com o recorte da pessoa escapando da máscara. PNG e SVG. Cópia independente, sem ligação com o repositório de origem. |
 | `/softpoint-resizer/` | **Softpoint Resizer** — o Softpoint em qualquer largura, altura e raio, nas cores do DS. SVG e PNG. É a menor ferramenta completa do hub, e por isso o molde das novas. |
 | `/gradient-studio/` | **Gradient Studio** — feito a partir do gradient maker do the hub (mesmo motor: mesh animado, distorção, granulação, PNG, SVG, vídeo em loop e código CSS). Os presets são os nove renders oficiais do DS (`assets/gradients/`), refeitos como mesh editável por otimização sobre cada render; as cores ficam presas à paleta Softplan, com quatro intensidades (suave, original, intensa e noturna). |
-| `/grid-maker/` | **Grid Maker** — feito a partir do grid maker do the hub (mesma geometria: malha, ocupação de várias células, escalonamento, formas paramétricas, SVG próprio; exporta SVG vetorial e PNG). Começa no Softpoint, roxo 80 sobre roxo 10; as cores saem da paleta Softplan, com uma cor livre para casos fora da marca. |
+| `/gerador-de-grids/` | **Gerador de grids** — feito a partir do grid maker do the hub (mesma geometria: malha, ocupação de várias células, escalonamento, formas paramétricas, SVG próprio; exporta SVG vetorial e PNG). Começa no Softpoint, roxo 80 sobre roxo 10; as cores saem da paleta Softplan, com uma cor livre para casos fora da marca. |
 | `/softpoint-3d/` | **3D Studio** — softpoints e o S da Softplan em 3D (Three.js), com animação e exportação PNG, JPG e vídeo WebM. Cópia independente; o servidor de IA do original ficou de fora. As luzes de ambiente (8 HDRIs do Poly Haven, CC0, ~12 MB) ficam em `public/hdri/`: funciona sem internet. Cada peça pode ter forma e cor próprias. |
 
 As versões de `react`, `react-dom`, `three` e `@react-three/*` estão fixas no

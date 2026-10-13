@@ -52,11 +52,11 @@ export const FERRAMENTAS = [
   },
   {
     id: "grid",
-    nome: "Grid Maker",
+    nome: "Gerador de grids",
     descricao:
       "Grids modulares com o Softpoint e outras formas, ocupação de várias células e escalonamento progressivo.",
     formatos: ["SVG", "PNG"],
-    url: "grid-maker/",
+    url: "gerador-de-grids/",
   },
   {
     id: "breve",

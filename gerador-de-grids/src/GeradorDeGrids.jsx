@@ -5,7 +5,7 @@ import { useTema } from "../../src/comum/tema.js";
 import { Controle, Linha, Marcador, Segmentado } from "../../src/comum/controles.jsx";
 
 /* ---------------------------------------------------------------------------
-   Grid Maker — grids modulares com formas, ocupação de várias células e
+   Gerador de grids — grids modulares com formas, ocupação de várias células e
    escalonamento progressivo. Exporta SVG vetorial e PNG.
 
    Feito a partir do grid maker do the hub. A geometria (malha, ocupação,
@@ -129,7 +129,7 @@ function Cor({ rotulo, valor, onChange }) {
 /* ------------------------------------------------------------------ */
 /* App                                                                  */
 /* ------------------------------------------------------------------ */
-export default function GridMaker() {
+export default function GeradorDeGrids() {
   const [tema, alternarTema] = useTema();
   const svgRef = useRef(null);
   const fileRef = useRef(null);
@@ -432,7 +432,7 @@ export default function GridMaker() {
   return (
     <div className="ferramenta">
       <aside className="painel">
-        <Header tool="Grid Maker" homeHref={HUB_URL} tema={tema} onToggleTema={alternarTema} />
+        <Header tool="Gerador de grids" homeHref={HUB_URL} tema={tema} onToggleTema={alternarTema} />
 
         <section className="secao">
           <h2 className="secao-titulo">Suporte</h2>
