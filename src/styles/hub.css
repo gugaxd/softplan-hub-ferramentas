@@ -60,25 +60,36 @@
 }
 
 /* ------------------------------------------------------------------- grade
-   Uma regra só, sem media query. O min() evita rolagem horizontal em tela
-   estreita: sem ele, um card mínimo numa tela menor transborda. */
+   Flex com quebra, e não grid: grid não centraliza uma linha incompleta, e
+   com cinco ferramentas a de baixo tem duas. Os cards têm a mesma largura em
+   todas as linhas — 3, 2 ou 1 por linha, conforme o espaço do próprio menu
+   (container query). Container query não lê variável: 544px e 828px saem de
+   --card-minimo (260) e --gap-card (24) — 2 × 260 + 24 e 3 × 260 + 2 × 24. */
 .hub-grade-area {
   max-width: var(--largura-hub);
   margin: 0 auto;
   padding: var(--pad-palco);
+  container-type: inline-size;
 }
 .hub-grade {
-  display: grid;
-  /* no máximo --colunas-hub por linha (o mínimo de cada coluna é a fração
-     dela); abaixo disso quebra em 2 e em 1 conforme a largura */
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(
-      min(100%, max(var(--card-minimo), calc((100% - (var(--colunas-hub) - 1) * var(--gap-card)) / var(--colunas-hub)))),
-      1fr
-    )
-  );
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--gap-card);
+}
+.hub-grade > .hub-card {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+@container (min-width: 544px) {
+  .hub-grade > .hub-card {
+    flex-basis: calc((100% - var(--gap-card)) / 2);
+  }
+}
+@container (min-width: 828px) {
+  .hub-grade > .hub-card {
+    flex-basis: calc((100% - 2 * var(--gap-card)) / 3);
+  }
 }
 .hub-vazio {
   margin: 0;
