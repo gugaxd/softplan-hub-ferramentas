@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Hub Softplan — tokens
+   A identidade sai do design system (../../../tokens/*.css). Os poucos tons que
+   o DS não define, como as superfícies do tema escuro e o xadrez do palco, estão
+   marcados como "derivado". Nenhum componente escreve cor, raio ou espaçamento
+   literal: tudo sai daqui.
+   Aplique data-tema="claro" ou data-tema="escuro" no <html>.
+   ========================================================================== */
+
+:root {
+  /* --- Paleta da marca (valores do DS, sem arredondar) --- */
+  --roxo-10: #F7F5FF;
+  --roxo-20: #F0EAFF;
+  --roxo-40: #9A7CFF;
+  --roxo-80: #5C5CFF;
+  --azul-60: #575392;
+  --azul-80: #2D2A58;
+  --azul-85: #2D2E58;
+  --azul-90: #27293F;
+  --azul-100: #181A27;
+  --azul-texto: #2B2F47;
+  --cinza-20: #F1F2F7;
+  --cinza-40: #DCDEEA;
+  --cinza-70: #55596C;
+  --cinza-80: #9FA3B9;
+  --branco: #FFFFFF;
+  --sucesso-80: #15803D;
+  --alerta-80: #EAB308;
+  --erro-80: #B91C1C;
+
+  /* --- Tipografia ---
+     Família única: Sora. Segoe UI é o fallback oficial do DS para ambientes
+     com restrição de fonte. Número usa a própria Sora com algarismos tabulares
+     (classe .num), para um valor que vai de 9 a 10 não empurrar o layout.
+     --mono fica só para código exportado (CSS, JSON). */
+  --sans: "Sora", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --size-chamada: 36px;      /* Header web 3 */
+  --size-chamada-mob: 24px;  /* Header mobile 3 */
+  --size-card: 18px;
+  --size-marca: 15px;
+  --size-base: 14px;         /* Body xxs */
+  --size-descricao: 13px;
+  --size-rotulo: 13px;
+  --size-valor: 12px;
+  --size-nota: 12px;
+  --size-secao: 11px;        /* eyebrow: Label, caixa alta */
+  --track-secao: 0.08em;
+  --track-etiqueta: 0.04em;
+  --track-chamada: -0.02em;
+  --lh-texto: 1.5;
+  --lh-titulo: 1.25;
+
+  /* --- Forma ---
+     O raio padrão do DS é 8 (botões, cards, menus); 4 só em chips e campos
+     pequenos. O Softpoint é a forma proprietária: cantos superior-esquerdo e
+     inferior-direito arredondados, os outros dois retos. */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --softpoint: 8px 0 8px 0;
+  --softpoint-lg: 16px 0 16px 0;
+
+  /* --- Espaçamento (escala base 4 do DS) --- */
+  --gap-2xs: 2px;
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 12px;
+  --gap-lg: 16px;
+  --gap-xl: 24px;
+  --gap-2xl: 32px;
+  --gap-card: 24px;
+
+  --pad-cabecalho: 0 16px;
+  --pad-secao: 16px;
+  --pad-botao: 8px 12px;
+  --pad-segmento: 6px 8px;
+  --pad-campo: 4px 8px;
+  --pad-etiqueta: 2px 8px;
+  --pad-indice: 3px 8px;
+  --pad-palco: 32px;
+  --pad-faixa: 56px 32px 48px;
+  --pad-faixa-mob: 32px 16px 28px;
+  --pad-card: 12px;
+  --pad-card-corpo: 16px 8px 8px;
+  --pad-rodape: 20px 32px;
+  --gutter-estreito: 16px;
+
+  /* --- Medidas --- */
+  --largura-painel: 320px;   /* o wordmark é largo: abaixo disso o nome da ferramenta não cabe */
+  --largura-hub: 1200px;     /* conteúdo do DS */
+  --largura-intro: 640px;
+  --largura-grafismo: 240px;
+  --largura-valor: 64px;
+  --largura-campo: 168px;    /* select e texto */
+  --altura-campo: 28px;
+  --largura-controles: 600px; /* coluna de controles no tablet em pé */
+  --card-minimo: 260px;
+  --altura-cabecalho: 64px;  /* o palco gruda logo abaixo, no celular */
+  --altura-palco-mob: 46vh;
+  --altura-barra: 44px;
+  --altura-logo: 18px;
+  --gap-marca: 10px;
+  --altura-risco: 24px;
+  --botao-icone: 32px;
+  --icone: 18px;
+  --trilho: 4px;
+  --polegar: 16px;
+  --foco: 2px;
+  --xadrez: 16px;
+  /* Referência: media query não lê variável, então 860px está escrito à mão em
+     ferramenta.css e hub.css. Mudou aqui, mude lá. */
+  --quebra: 860px;
+
+  /* --- Movimento (padrão conservador do DS: cor e sombra, sem bounce) --- */
+  --duracao: 120ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ------------------------------------------------------------------ claro
+   O padrão. O DS manda priorizar o fundo claro sobre o escuro. */
+[data-tema="claro"] {
+  color-scheme: light;
+
+  --ink: var(--roxo-10);       /* fundo recuado: campos, botões em repouso */
+  --ink2: var(--branco);       /* superfície: painel, cabeçalho, cards */
+  --ink3: var(--roxo-20);      /* superfície elevada */
+  --line: var(--cinza-40);
+  --text: var(--azul-texto);
+  --titulo: var(--azul-100);
+  --muted: var(--cinza-70);
+
+  --acento: var(--roxo-80);          /* estrutura: eyebrow, foco, link */
+  --sobre-acento: var(--branco);
+  --acento-2: var(--roxo-80);        /* seleção: item ativo, botão principal */
+  --sobre-acento-2: var(--branco);
+  --acento-2-hover: var(--azul-80);
+  --hover: var(--roxo-20);           /* hover que preenche, nos controles */
+  --sobre-hover: var(--azul-80);
+
+  --stage: var(--cinza-20);
+  --stage-alt: #E7E8F0;              /* derivado: xadrez do palco */
+  --borda-card: transparent;         /* card do DS não tem borda no claro */
+  --sombra: 0 1px 4px rgba(45, 42, 88, 0.1);                                   /* --shadow-100 */
+  --sombra-hover: 0 4px 4px -4px rgba(12, 12, 13, 0.05), 0 16px 16px -8px rgba(12, 12, 13, 0.1); /* --shadow-200 */
+  --sombra-documento: 0 29px 58px -14px rgba(24, 26, 39, 0.25);               /* --shadow-300 */
+
+  --faixa: linear-gradient(135deg, #FFFFFF 0%, #F7F5FF 55%, #F0EAFF 100%);    /* --gradient-intensity-low */
+
+  /* marca no cabeçalho: versão 1, wordmark roxo e ponto azul */
+  --logo-marca: var(--roxo-80);
+  --logo-ponto: var(--azul-85);
+
+  /* desenhos das miniaturas */
+  --arte-fundo: var(--roxo-10);
+  --arte-papel: var(--branco);
+  --arte-cor: var(--roxo-80);
+  --arte-cor-2: var(--roxo-40);
+  --arte-linha: var(--cinza-40);
+}
+
+/* ----------------------------------------------------------------- escuro
+   Superfícies nos azuis do DS (azul-100, azul-90, azul-80). O roxo-80 como
+   texto não passa contraste sobre azul, então a estrutura usa o roxo-40. */
+[data-tema="escuro"] {
+  color-scheme: dark;
+
+  --ink: var(--azul-100);
+  --ink2: var(--azul-90);
+  --ink3: var(--azul-80);
+  --line: #3A3D58;                   /* derivado */
+  --text: var(--cinza-20);
+  --titulo: var(--roxo-10);
+  --muted: var(--cinza-80);
+
+  --acento: var(--roxo-40);
+  --sobre-acento: var(--azul-100);
+  --acento-2: var(--roxo-80);
+  --sobre-acento-2: var(--branco);
+  --acento-2-hover: var(--azul-60);
+  --hover: var(--azul-80);
+  --sobre-hover: var(--roxo-10);
+
+  --stage: var(--azul-100);
+  --stage-alt: #1F2132;              /* derivado: xadrez do palco */
+  --borda-card: var(--line);
+  --sombra: 0 1px 4px rgba(0, 0, 0, 0.4);
+  --sombra-hover: 0 16px 32px -8px rgba(0, 0, 0, 0.55);
+  --sombra-documento: 0 29px 58px -14px rgba(0, 0, 0, 0.6);
+
+  --faixa: linear-gradient(118deg, #181A27 35%, #2D2A58 100%);                /* azul-100 → azul-80 */
+
+  /* em fundo escuro o padrão do DS é a versão 2, monocromática */
+  --logo-marca: var(--roxo-10);
+  --logo-ponto: var(--roxo-10);
+
+  --arte-fundo: var(--azul-100);
+  --arte-papel: var(--azul-90);
+  --arte-cor: var(--roxo-80);
+  --arte-cor-2: var(--roxo-40);
+  --arte-linha: #3A3D58;             /* derivado, igual a --line */
+}

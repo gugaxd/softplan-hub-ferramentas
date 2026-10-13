@@ -1,0 +1,110 @@
+/* A casca: tokens, fonte e o cabeçalho que toda página do hub compartilha.
+   O menu importa só este arquivo; as ferramentas importam também ferramenta.css. */
+
+@import "./tokens.css";
+@import "./base.css";
+
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  height: var(--altura-cabecalho);
+  padding: var(--pad-cabecalho);
+  background: var(--ink2);
+  border-bottom: 1px solid var(--line);
+}
+
+.cabecalho-marca {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-marca);
+  min-width: 0;
+  color: var(--titulo);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+a.cabecalho-marca:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: var(--gap-xs);
+}
+
+.cabecalho-logo {
+  display: block;
+  flex: none;
+  height: var(--altura-logo);
+  width: auto;
+}
+.cabecalho-logo .logo-marca {
+  fill: var(--logo-marca);
+}
+.cabecalho-logo .logo-ponto {
+  fill: var(--logo-ponto);
+}
+
+.cabecalho-risco {
+  flex: none;
+  width: 1px;
+  height: var(--altura-risco);
+  background: var(--line);
+}
+
+/* O wordmark é largo e o painel é estreito: o nome quebra em até duas linhas,
+   que cabem na altura do cabeçalho, e só depois ganha reticências. O min-width:0
+   faz ele encolher antes de passar por baixo dos botões. */
+.cabecalho-nome {
+  display: -webkit-box;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: var(--size-marca);
+  font-weight: 600;
+  line-height: var(--lh-titulo);
+  color: var(--titulo);
+}
+
+.cabecalho-acoes {
+  display: flex;
+  flex: none;
+  gap: var(--gap-xs);
+}
+
+.botao-icone {
+  display: grid;
+  place-items: center;
+  width: var(--botao-icone);
+  height: var(--botao-icone);
+  padding: 0;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--duracao) var(--ease), border-color var(--duracao) var(--ease),
+    color var(--duracao) var(--ease);
+}
+.botao-icone:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--sobre-hover);
+}
+.botao-icone:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.botao-icone svg {
+  display: block;
+  width: var(--icone);
+  height: var(--icone);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

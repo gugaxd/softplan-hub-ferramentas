@@ -1,0 +1,130 @@
+/* Mask Studio — só o que o vocabulário comum (ferramenta.css) não cobre.
+   Tudo em tokens. */
+
+/* a barra do palco aqui é de ferramentas, não só de status: quebra linha no celular */
+.ms-barra {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--gap-sm);
+  height: auto;
+  min-height: var(--altura-barra);
+  padding: var(--gap-sm) var(--gap-lg);
+  white-space: normal;
+}
+.ms-barra .botao {
+  padding: var(--pad-segmento);
+}
+.ms-modos button {
+  flex: none;
+}
+.ms-contagem {
+  margin-left: auto;
+}
+
+.ms-area {
+  position: relative;
+}
+.ms-dica {
+  position: absolute;
+  bottom: var(--gap-lg);
+  left: 50%;
+  margin: 0;
+  padding: var(--pad-botao);
+  background: var(--ink2);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra);
+  font-size: var(--size-nota);
+  white-space: nowrap;
+  color: var(--muted);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.ms-largo {
+  width: 100%;
+  margin-bottom: var(--gap-lg);
+}
+.ms-nota {
+  margin-bottom: var(--gap-md);
+}
+
+.ms-arquivo {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+.ms-arquivo img {
+  width: var(--altura-barra);
+  height: var(--altura-barra);
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.ms-arquivo span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--size-nota);
+  color: var(--muted);
+}
+.ms-remover {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--size-nota);
+  font-weight: 600;
+  color: var(--acento);
+  cursor: pointer;
+}
+.ms-remover:hover {
+  text-decoration: underline;
+}
+.ms-remover:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: var(--gap-2xs);
+}
+
+.ms-botoes {
+  display: flex;
+  gap: var(--gap-sm);
+  margin: var(--gap-md) 0 var(--gap-lg);
+}
+.ms-botoes > * {
+  flex: 1;
+}
+
+.ms-icone {
+  display: block;
+  width: var(--icone);
+  height: auto;
+}
+.ms-icone path {
+  fill: currentColor;
+}
+
+.ms-texto-linha {
+  display: flex;
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-xs);
+}
+.ms-texto-linha .texto {
+  flex: 1;
+  width: auto;
+  max-width: none;
+}
+.ms-texto-linha.sel .texto {
+  border-color: var(--acento);
+}
+.ms-texto-linha + .ms-largo {
+  margin-top: var(--gap-sm);
+}
+
+.ms-sub {
+  padding: var(--gap-md);
+  background: var(--ink);
+  border-radius: var(--radius);
+}

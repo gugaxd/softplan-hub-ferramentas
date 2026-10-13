@@ -1,0 +1,53 @@
+/* Fonte da marca e reset mínimo, iguais em todas as páginas do hub. */
+
+@font-face {
+  font-family: "Sora";
+  src: url("./fontes/Sora-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--stage);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--size-base);
+  line-height: var(--lh-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Algarismos de largura fixa, na própria Sora. */
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

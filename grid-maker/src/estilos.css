@@ -1,0 +1,133 @@
+/* Grid Maker — só o que o vocabulário comum (ferramenta.css) não cobre.
+   Tudo em tokens. */
+
+/* biblioteca de formas */
+.gm-formas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-lg);
+}
+.gm-formas button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: var(--gap-sm);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--duracao) var(--ease), border-color var(--duracao) var(--ease);
+}
+.gm-formas button:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--sobre-hover);
+}
+.gm-formas button[aria-pressed="true"] {
+  background: var(--ink3);
+  border-color: var(--acento-2);
+  color: var(--acento-2);
+}
+.gm-formas button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.gm-formas svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* cor: rótulo + cor livre na linha, amostras da paleta por baixo */
+.gm-cor > .gm-amostras {
+  grid-column: 1 / -1;
+}
+.gm-amostras {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: var(--gap-2xs);
+}
+/* a cor da amostra é o próprio dado, por isso inline */
+.gm-amostras button {
+  height: var(--altura-campo);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.gm-amostras button[aria-pressed="true"] {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+.gm-amostras button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.gm-livre--ativa {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+
+.gm-largo {
+  width: 100%;
+  margin-bottom: var(--gap-md);
+}
+.gm-nota {
+  margin: calc(var(--gap-md) * -0.5) 0 var(--gap-lg);
+}
+.gm-nota-topo {
+  margin-top: var(--gap-md);
+}
+.gm-limpar {
+  margin: var(--gap-md) 0 0;
+}
+
+/* módulo selecionado */
+.gm-sel {
+  padding: var(--gap-md);
+  background: var(--ink);
+  border: 1px solid var(--acento-2);
+  border-radius: var(--radius);
+}
+.gm-sel-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-md);
+  font-size: var(--size-nota);
+  color: var(--muted);
+}
+.gm-sel-topo strong {
+  font-size: var(--size-rotulo);
+  color: var(--titulo);
+}
+
+.gm-barra {
+  justify-content: flex-start;
+  gap: var(--gap-lg);
+}
+.gm-status {
+  margin-left: auto;
+  color: var(--acento);
+}
+
+/* o SVG do palco encolhe para caber, mantendo a proporção do arquivo:
+   a largura da moldura sai do container (cqw/cqh) e a altura, do aspect-ratio */
+.gm-area {
+  container-type: size;
+}
+.gm-moldura {
+  flex: none;
+}
+.gm-svg {
+  width: 100%;
+  height: 100%;
+}
+/* contorno do módulo selecionado: interface, não vai para o arquivo */
+.gm-selecao {
+  stroke: var(--acento);
+}

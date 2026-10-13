@@ -1,0 +1,214 @@
+/* Softpoint 3D Studio — só o que o vocabulário comum (ferramenta.css) não
+   cobre. Tudo em tokens. */
+
+/* a barra do palco aqui é de ferramentas: quebra linha no celular */
+.s3-barra {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--gap-sm);
+  height: auto;
+  min-height: var(--altura-barra);
+  padding: var(--gap-sm) var(--gap-lg);
+  white-space: normal;
+}
+.s3-barra .botao {
+  padding: var(--pad-segmento);
+}
+.s3-modos button {
+  flex: none;
+}
+.s3-dica,
+.s3-rec {
+  margin-left: auto;
+}
+.s3-rec {
+  font-weight: 600;
+  color: var(--erro-80);
+}
+
+/* a cena 3D ocupa o palco inteiro, sem margem: o xadrez só aparece no fundo transparente */
+.s3-area {
+  padding: 0;
+}
+.s3-cena {
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  cursor: grab;
+}
+.s3-cena:active {
+  cursor: grabbing;
+}
+
+.s3-quebra {
+  flex-wrap: wrap;
+}
+
+.s3-erro {
+  margin: var(--gap-md) 0 0;
+  padding: var(--pad-botao);
+  background: var(--ink);
+  border: 1px solid var(--erro-80);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-nota);
+  color: var(--erro-80);
+}
+
+.s3-ativa {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+
+.s3-nota {
+  margin-bottom: var(--gap-md);
+}
+.botoes + .nota,
+.s3-largo + .nota {
+  margin-top: var(--gap-md);
+}
+
+.s3-largo {
+  width: 100%;
+}
+.s3-sub {
+  margin-bottom: var(--gap-md);
+  padding: var(--gap-md);
+  background: var(--ink);
+  border-radius: var(--radius);
+}
+
+/* peças: adicionar por forma, e a lista das que estão na cena */
+.s3-adicionar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-md);
+}
+.s3-adicionar .botao {
+  flex: 1 1 auto;
+  padding: var(--pad-segmento);
+  font-size: var(--size-valor);
+  white-space: nowrap;
+}
+.s3-pecas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-md);
+}
+.s3-pecas button {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  min-width: 0;
+  padding: var(--pad-segmento);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-valor);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--duracao) var(--ease), border-color var(--duracao) var(--ease);
+}
+.s3-pecas button:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--sobre-hover);
+}
+.s3-pecas button[aria-pressed="true"] {
+  background: var(--ink3);
+  border-color: var(--acento-2);
+}
+.s3-pecas button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.s3-peca-nome {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* a cor do ponto é a cor da própria peça: um dado, por isso inline */
+.s3-ponto {
+  flex: none;
+  width: var(--gap-md);
+  height: var(--gap-md);
+  border: 1px solid var(--line);
+  border-radius: var(--softpoint);
+}
+.s3-sub-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--gap-md);
+  font-size: var(--size-rotulo);
+  color: var(--titulo);
+}
+.s3-remover {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--size-nota);
+  font-weight: 600;
+  color: var(--erro-80);
+  cursor: pointer;
+}
+.s3-remover:hover {
+  text-decoration: underline;
+}
+.s3-remover:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+.s3-remover:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: var(--gap-2xs);
+}
+
+.s3-grade {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-lg);
+}
+.s3-grade .botao {
+  padding: var(--pad-segmento);
+}
+
+/* amostras de fundo: a cor do botão é o próprio dado */
+.s3-amostras {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-sm);
+}
+.s3-amostras button {
+  height: var(--altura-campo);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.s3-amostras button[aria-pressed="true"] {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+.s3-amostras button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+.s3-gravar {
+  display: grid;
+  gap: var(--gap-sm);
+}
+.s3-gravando,
+.s3-gravando:hover {
+  background: var(--ink);
+  border-color: var(--erro-80);
+  color: var(--erro-80);
+}

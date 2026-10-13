@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="claro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mask Studio · Softplan</title>
+    <meta name="description" content="Uma foto revelada por uma grade de furos softpoint, com o recorte da pessoa escapando da máscara. Exporta PNG e SVG." />
+    <!-- anti-piscada: aplica o tema salvo antes do primeiro CSS -->
+    <script>
+      try {
+        var t = localStorage.getItem("softplan-hub:tema");
+        if (t === "claro" || t === "escuro") document.documentElement.dataset.tema = t;
+      } catch (e) {}
+    </script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!-- prévia ao compartilhar o link: Teams, Slack, WhatsApp, LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hub de ferramentas Softplan" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Mask Studio · Hub de ferramentas Softplan" />
+    <meta property="og:description" content="Uma foto revelada por uma grade de furos softpoint, com o recorte da pessoa escapando da máscara. Exporta PNG e SVG." />
+    <meta property="og:url" content="%URL_DO_SITE%/mask-studio/" />
+    <meta property="og:image" content="%URL_DO_SITE%/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Hub de ferramentas Softplan" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./src/main.jsx"></script>
+  </body>
+</html>

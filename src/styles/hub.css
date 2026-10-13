@@ -1,0 +1,290 @@
+/* O menu: faixa de abertura, grade de cards vinda do catálogo e rodapé.
+   O cabeçalho vem de comum/casca.css. Toda cor, raio e espaçamento sai dos tokens. */
+
+.hub {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.hub-main {
+  flex: 1;
+}
+
+/* ---------------------------------------------------------------- abertura
+   Gradiente de baixa intensidade do DS e o Softpoint 3D como acento de canto:
+   apoio, nunca protagonista. */
+.hub-faixa {
+  background: var(--faixa);
+  border-bottom: 1px solid var(--line);
+}
+.hub-faixa-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-2xl);
+  max-width: var(--largura-hub);
+  margin: 0 auto;
+  padding: var(--pad-faixa);
+}
+.hub-intro {
+  max-width: var(--largura-intro);
+}
+.hub-eyebrow {
+  margin: 0 0 var(--gap-md);
+  font-size: var(--size-secao);
+  font-weight: 600;
+  letter-spacing: var(--track-secao);
+  text-transform: uppercase;
+  color: var(--acento);
+}
+.hub-chamada {
+  margin: 0 0 var(--gap-md);
+  font-size: var(--size-chamada);
+  font-weight: 600;
+  line-height: var(--lh-titulo);
+  letter-spacing: var(--track-chamada);
+  text-wrap: balance;
+  color: var(--titulo);
+}
+.hub-nota {
+  margin: 0;
+  font-size: var(--size-base);
+  color: var(--muted);
+}
+.hub-grafismo {
+  flex: none;
+  width: var(--largura-grafismo);
+  height: auto;
+  object-fit: contain;
+}
+
+/* ------------------------------------------------------------------- grade
+   Uma regra só, sem media query. O min() evita rolagem horizontal em tela
+   estreita: sem ele, um card mínimo numa tela menor transborda. */
+.hub-grade-area {
+  max-width: var(--largura-hub);
+  margin: 0 auto;
+  padding: var(--pad-palco);
+}
+.hub-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--card-minimo), 100%), 1fr));
+  gap: var(--gap-card);
+}
+.hub-vazio {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------- card
+   Card do DS: superfície, raio 8, sombra de repouso, sem borda. No hover
+   ganha a sombra 200 e o título vira acento. */
+.hub-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad-card);
+  background: var(--ink2);
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 1px var(--borda-card), var(--sombra);
+  color: var(--text);
+  text-decoration: none;
+  transition: box-shadow var(--duracao) var(--ease);
+}
+a.hub-card:hover {
+  box-shadow: inset 0 0 0 1px var(--borda-card), var(--sombra-hover);
+}
+a.hub-card:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: var(--gap-2xs);
+}
+
+/* recorte Softpoint na imagem do card */
+.hub-card-palco {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--arte-fundo);
+  border-radius: var(--softpoint-lg);
+}
+.hub-mini {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hub-mini--imagem {
+  object-fit: cover;
+}
+
+.hub-card-corpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--pad-card-corpo);
+}
+.hub-card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--gap-md);
+}
+
+/* etiqueta Softpoint, como no card do DS */
+.hub-card-indice {
+  padding: var(--pad-indice);
+  background: var(--acento-2);
+  border-radius: var(--softpoint);
+  font-size: var(--size-secao);
+  font-weight: 600;
+  line-height: var(--lh-titulo);
+  letter-spacing: var(--track-etiqueta);
+  color: var(--sobre-acento-2);
+}
+.hub-card-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  font-size: var(--size-nota);
+  font-weight: 600;
+  color: var(--muted);
+  transition: color var(--duracao) var(--ease);
+}
+.hub-card-estado svg {
+  width: var(--icone);
+  height: var(--icone);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+a.hub-card:hover .hub-card-estado {
+  color: var(--acento);
+}
+
+.hub-card-nome {
+  margin: 0 0 var(--gap-sm);
+  font-size: var(--size-card);
+  font-weight: 600;
+  line-height: var(--lh-titulo);
+  color: var(--titulo);
+  transition: color var(--duracao) var(--ease);
+}
+a.hub-card:hover .hub-card-nome {
+  color: var(--acento);
+}
+.hub-card-desc {
+  flex: 1;
+  margin: 0 0 var(--gap-lg);
+  font-size: var(--size-descricao);
+  line-height: var(--lh-texto);
+  color: var(--muted);
+}
+
+.hub-card-formatos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hub-card-formatos li {
+  padding: var(--pad-etiqueta);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-secao);
+  font-weight: 600;
+  letter-spacing: var(--track-etiqueta);
+  color: var(--muted);
+}
+
+/* em breve: sem sombra, só o contorno, e o conteúdo a 0.4 (desabilitado do DS) */
+.hub-card--breve {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+  cursor: default;
+}
+.hub-card--breve .hub-card-palco,
+.hub-card--breve .hub-card-indice,
+.hub-card--breve .hub-card-nome,
+.hub-card--breve .hub-card-desc,
+.hub-card--breve .hub-card-formatos {
+  opacity: 0.4;
+}
+
+/* ------------------------------------------------------------ miniaturas */
+.mini-papel {
+  fill: var(--arte-papel);
+  stroke: var(--arte-linha);
+  stroke-width: 1;
+}
+.mini-cor {
+  fill: var(--arte-cor);
+}
+.mini-cor-2 {
+  fill: var(--arte-cor-2);
+}
+.mini-linha {
+  fill: var(--arte-linha);
+}
+.mini-cota {
+  fill: none;
+  stroke: var(--arte-cor-2);
+  stroke-width: 1;
+}
+
+/* ------------------------------------------------------------------ rodapé */
+.hub-rodape {
+  background: var(--ink2);
+  border-top: 1px solid var(--line);
+}
+.hub-rodape-conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm) var(--gap-lg);
+  max-width: var(--largura-hub);
+  margin: 0 auto;
+  padding: var(--pad-rodape);
+  font-size: var(--size-nota);
+  color: var(--muted);
+}
+.hub-rodape a {
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  text-decoration: none;
+}
+.hub-rodape a:hover {
+  color: var(--acento);
+}
+.hub-rodape a:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: var(--gap-2xs);
+}
+.hub-rodape-direitos {
+  margin-left: auto;
+}
+
+/* ------------------------------------------------------------------ quebra */
+@media (max-width: 860px) {
+  .hub-faixa-conteudo {
+    padding: var(--pad-faixa-mob);
+  }
+  .hub-grafismo {
+    display: none;
+  }
+  .hub-chamada {
+    font-size: var(--size-chamada-mob);
+  }
+  .hub-grade-area {
+    padding: var(--gap-xl) var(--gutter-estreito);
+  }
+  .hub-rodape-conteudo {
+    padding-inline: var(--gutter-estreito);
+  }
+  .hub-rodape-direitos {
+    margin-left: 0;
+  }
+}

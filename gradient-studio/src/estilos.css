@@ -1,0 +1,165 @@
+/* Gradient Studio — só o que o vocabulário comum (ferramenta.css) não cobre.
+   Tudo em tokens. */
+
+/* os nove gradientes da marca, em miniatura */
+.gs-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-lg);
+}
+.gs-presets button {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.gs-presets img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+.gs-presets button:hover {
+  border-color: var(--acento);
+}
+.gs-presets button[aria-pressed="true"] {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+  border-color: var(--acento-2);
+}
+.gs-presets button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+/* cor: rótulo, amostras da paleta e remover */
+.gs-cor {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-sm);
+}
+.gs-cor-nome {
+  width: calc(var(--largura-valor) - var(--gap-md));
+  font-size: var(--size-valor);
+  color: var(--text);
+}
+.gs-amostras {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--gap-2xs);
+}
+/* a cor da amostra é o próprio dado, por isso inline */
+.gs-amostras button {
+  height: var(--botao-icone);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.gs-amostras button[aria-pressed="true"] {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+.gs-amostras button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.gs-remover {
+  width: var(--icone);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--size-marca);
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+.gs-remover:hover {
+  color: var(--erro-80);
+}
+.gs-remover:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.gs-remover:focus-visible {
+  outline: var(--foco) solid var(--acento);
+}
+
+.gs-botoes {
+  margin-top: var(--gap-md);
+}
+.gs-nota {
+  margin: calc(var(--gap-md) * -0.5) 0 var(--gap-lg);
+}
+.gs-nota-topo {
+  margin-top: var(--gap-md);
+}
+.botao[aria-pressed="true"] {
+  background: var(--ink3);
+  border-color: var(--acento-2);
+}
+.gs-gravando,
+.gs-gravando:hover {
+  background: var(--ink);
+  border-color: var(--erro-80);
+  color: var(--erro-80);
+}
+
+/* barra de status com o reproduzir no fim */
+.gs-barra {
+  justify-content: flex-start;
+  gap: var(--gap-lg);
+}
+.gs-status {
+  color: var(--acento);
+}
+.gs-play {
+  margin-left: auto;
+  padding: var(--pad-segmento);
+}
+
+/* código: painel por baixo do palco */
+.gs-codigo {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  height: 34vh;
+  padding: var(--gap-md) var(--gap-lg) var(--gap-lg);
+  background: var(--ink2);
+  border-top: 1px solid var(--line);
+}
+.gs-codigo-cab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+}
+.gs-codigo-modo button {
+  flex: none;
+  padding: var(--pad-segmento);
+}
+.gs-codigo textarea {
+  flex: 1;
+  min-height: 0;
+  padding: var(--gap-md);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-family: var(--mono);
+  font-size: var(--size-valor);
+  line-height: var(--lh-texto);
+  color: var(--text);
+  resize: none;
+}
+.gs-codigo textarea:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}

@@ -1,0 +1,384 @@
+/* Layout de uma ferramenta e o vocabulário de controles que todas repetem.
+   Duas regiões: painel de controles à esquerda, palco à direita.
+
+   <div class="ferramenta">
+     <aside class="painel">
+       <Header … />                  ← .cabecalho, sticky no topo do painel
+       <section class="secao">…</section>
+     </aside>
+     <main class="palco">
+       <div class="barra">…</div>    ← barra de status
+       <div class="palco-area">…</div>
+     </main>
+   </div> */
+
+.ferramenta {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--stage);
+}
+
+/* ------------------------------------------------------------------ painel */
+.painel {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: var(--largura-painel);
+  overflow-y: auto;
+  background: var(--ink2);
+  border-right: 1px solid var(--line);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+/* painel longo rola; sem isto, os filhos encolhem para caber, a começar pelo cabeçalho */
+.painel > * {
+  flex: none;
+}
+
+.secao {
+  padding: var(--pad-secao);
+  border-bottom: 1px solid var(--line);
+}
+
+/* eyebrow do DS: caixa alta, tracking aberto, no acento */
+.secao-titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin: 0 0 var(--gap-md);
+  font-size: var(--size-secao);
+  font-weight: 600;
+  line-height: var(--lh-titulo);
+  letter-spacing: var(--track-secao);
+  text-transform: uppercase;
+  color: var(--acento);
+}
+.secao-titulo::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* rótulo + campo numérico na mesma linha, slider por baixo */
+.controle {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--gap-sm) var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+.controle:last-child {
+  margin-bottom: 0;
+}
+.controle > .slider,
+.controle > .segmentado {
+  grid-column: 1 / -1;
+}
+
+.rotulo {
+  font-size: var(--size-rotulo);
+  color: var(--text);
+}
+
+.valor {
+  width: var(--largura-valor);
+  padding: var(--pad-campo);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-valor);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text);
+}
+.valor:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+.selecao,
+.texto {
+  max-width: var(--largura-campo);
+  padding: var(--pad-campo);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-valor);
+  color: var(--text);
+}
+.selecao {
+  cursor: pointer;
+}
+.texto {
+  width: var(--largura-campo);
+}
+.cor {
+  width: var(--largura-valor);
+  height: var(--altura-campo);
+  padding: var(--gap-2xs);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.selecao:focus-visible,
+.texto:focus-visible,
+.cor:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+.marcador {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-sm);
+  font-size: var(--size-rotulo);
+  color: var(--text);
+  cursor: pointer;
+}
+.marcador input {
+  width: var(--polegar);
+  height: var(--polegar);
+  margin: 0;
+  accent-color: var(--acento-2);
+  cursor: pointer;
+}
+
+.campo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+}
+.unidade {
+  min-width: var(--gap-md);
+  font-size: var(--size-nota);
+  color: var(--muted);
+}
+
+.nota {
+  margin: 0;
+  font-size: var(--size-nota);
+  line-height: var(--lh-texto);
+  color: var(--muted);
+}
+* + .nota {
+  margin-top: var(--gap-md);
+}
+
+/* ------------------------------------------------------------------ botões
+   Hover que preenche, não que só muda a borda: num painel denso, mudança de
+   área lê melhor que mudança de contorno. Desabilitado é opacidade 0.4 (DS). */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-sm);
+  padding: var(--pad-botao);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: var(--size-rotulo);
+  font-weight: 600;
+  line-height: var(--lh-titulo);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--duracao) var(--ease), border-color var(--duracao) var(--ease),
+    color var(--duracao) var(--ease);
+}
+.botao:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--sobre-hover);
+}
+.botao:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.botao:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.botao--primario {
+  background: var(--acento-2);
+  border-color: var(--acento-2);
+  color: var(--sobre-acento-2);
+}
+.botao--primario:hover {
+  background: var(--acento-2-hover);
+  border-color: var(--acento-2-hover);
+  color: var(--sobre-acento-2);
+}
+
+.botoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-sm);
+}
+
+/* opções exclusivas: o item ativo ganha o acento de seleção */
+.segmentado {
+  display: flex;
+  gap: var(--gap-2xs);
+  padding: var(--gap-2xs);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.segmentado button {
+  flex: 1;
+  padding: var(--pad-segmento);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--size-valor);
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--duracao) var(--ease), color var(--duracao) var(--ease);
+}
+.segmentado button:hover {
+  background: var(--hover);
+  color: var(--sobre-hover);
+}
+.segmentado button[aria-pressed="true"] {
+  background: var(--acento-2);
+  color: var(--sobre-acento-2);
+}
+.segmentado button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+.slider {
+  width: 100%;
+  height: var(--trilho);
+  margin: 0;
+  background: var(--line);
+  border-radius: var(--radius);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+  width: var(--polegar);
+  height: var(--polegar);
+  background: var(--acento-2);
+  border: 2px solid var(--ink2);
+  border-radius: 50%;
+  box-shadow: var(--sombra);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: grab;
+}
+.slider::-moz-range-thumb {
+  width: var(--polegar);
+  height: var(--polegar);
+  background: var(--acento-2);
+  border: 2px solid var(--ink2);
+  border-radius: 50%;
+  box-shadow: var(--sombra);
+  cursor: grab;
+}
+.slider:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: var(--gap-xs);
+}
+
+/* ------------------------------------------------------------------- palco */
+.palco {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.barra {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  height: var(--altura-barra);
+  padding: 0 var(--gap-lg);
+  background: var(--ink2);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--size-nota);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+/* xadrez de transparência: o que não tem fundo aparece como não tendo */
+.palco-area {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: var(--pad-palco);
+  overflow: auto;
+  background-color: var(--stage);
+  background-image:
+    linear-gradient(45deg, var(--stage-alt) 25%, transparent 25%, transparent 75%, var(--stage-alt) 75%),
+    linear-gradient(45deg, var(--stage-alt) 25%, transparent 25%, transparent 75%, var(--stage-alt) 75%);
+  background-size: var(--xadrez) var(--xadrez);
+  background-position: 0 0, calc(var(--xadrez) / 2) calc(var(--xadrez) / 2);
+}
+
+.documento {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 0 0 1px var(--line), var(--sombra-documento);
+}
+
+/* Tudo que se arrasta no palco — canvas que gira, bloco que move, alça que
+   redimensiona. Sem isso, no celular o dedo rola a página em vez de mover a
+   peça. Use eventos pointer*, que cobrem mouse, dedo e caneta. */
+.arrastavel {
+  touch-action: none;
+  user-select: none;
+}
+
+/* ----------------------------------------------------- celular e tablet em pé
+   Empilhar painel e palco não resolve: o painel é longo e o resultado fica
+   telas abaixo. O painel deixa de gerar caixa (display:contents), os filhos
+   sobem para .ferramenta e, com order, cabeçalho e palco ficam no topo, os
+   dois sticky, enquanto os controles rolam por baixo.
+   - overflow:visible na raiz: overflow:hidden num ancestral anula o sticky.
+   - o top do palco é a altura do cabeçalho, que é fixa (--altura-cabecalho). */
+@media (max-width: 860px) {
+  .ferramenta {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .painel {
+    display: contents;
+  }
+  .cabecalho {
+    order: -2;
+    z-index: 7;
+  }
+  .palco {
+    position: sticky;
+    top: var(--altura-cabecalho);
+    z-index: 6;
+    order: -1;
+    flex: none;
+    height: var(--altura-palco-mob);
+  }
+  .palco-area {
+    padding: var(--gutter-estreito);
+  }
+  .painel > *:not(.cabecalho) {
+    order: 1;
+    background: var(--ink2);
+    /* em tablet a coluna de controles para de esticar */
+    padding-inline: max(var(--gutter-estreito), calc((100% - var(--largura-controles)) / 2));
+  }
+}
