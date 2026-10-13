@@ -69,7 +69,15 @@
 }
 .hub-grade {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(var(--card-minimo), 100%), 1fr));
+  /* no máximo --colunas-hub por linha (o mínimo de cada coluna é a fração
+     dela); abaixo disso quebra em 2 e em 1 conforme a largura */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      min(100%, max(var(--card-minimo), calc((100% - (var(--colunas-hub) - 1) * var(--gap-card)) / var(--colunas-hub)))),
+      1fr
+    )
+  );
   gap: var(--gap-card);
 }
 .hub-vazio {

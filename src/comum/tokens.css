@@ -96,6 +96,7 @@
   --altura-campo: 28px;
   --largura-controles: 600px; /* coluna de controles no tablet em pé */
   --card-minimo: 260px;
+  --colunas-hub: 3;          /* cards por linha no menu, no máximo */
   --altura-cabecalho: 64px;  /* o palco gruda logo abaixo, no celular */
   --altura-palco-mob: 46vh;
   --altura-barra: 44px;
