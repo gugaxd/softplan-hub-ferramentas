@@ -1,0 +1,254 @@
+/* Gerador de estande — só o que o vocabulário comum (ferramenta.css) não
+   cobre. Tudo em tokens. */
+
+/* a interface esconde e mostra blocos com o atributo hidden; nada aqui pode
+   vencê-lo com um display próprio */
+.ferramenta [hidden] {
+  display: none !important;
+}
+
+/* o cabeçalho React é montado dentro deste div, que não gera caixa: assim o
+   .cabecalho continua sendo filho direto do painel para o layout e o celular */
+.est-cabecalho {
+  display: contents;
+}
+.painel .cabecalho {
+  flex: none;
+}
+
+/* palco: o 3D ocupa a área inteira, com o fundo do tema */
+.est-area {
+  position: relative;
+  padding: 0;
+}
+three-d-stage {
+  --stage-bg: var(--stage);
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  cursor: pointer;
+}
+three-d-stage:not(:defined) {
+  visibility: hidden;
+}
+.est-carregando {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font-size: var(--size-rotulo);
+  color: var(--muted);
+  pointer-events: none;
+}
+.est-barra {
+  white-space: normal;
+}
+
+/* blocos com rótulo em cima e o controle por baixo */
+.est-campo {
+  display: grid;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-lg);
+}
+.est-largo {
+  width: 100%;
+  max-width: none;
+}
+.est-nota-sob {
+  margin-top: var(--gap-sm);
+}
+.est-dica {
+  margin-top: var(--gap-md);
+  padding: var(--pad-botao);
+  background: var(--ink3);
+  border-radius: var(--softpoint);
+  color: var(--text);
+}
+.est-valor {
+  font-size: var(--size-valor);
+  font-weight: 600;
+  color: var(--acento);
+}
+.est-quebra {
+  flex-wrap: wrap;
+}
+.est-quebra button {
+  flex: 1 1 auto;
+}
+
+/* metragens prontas */
+.est-presets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-lg);
+}
+.est-presets button {
+  padding: var(--pad-segmento);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-valor);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--duracao) var(--ease), border-color var(--duracao) var(--ease);
+}
+.est-presets button:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--sobre-hover);
+}
+.est-presets button[aria-pressed="true"] {
+  background: var(--acento-2);
+  border-color: var(--acento-2);
+  color: var(--sobre-acento-2);
+}
+.est-presets button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+/* amostras de cor: a cor do botão é o próprio dado, por isso inline */
+.est-amostras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+}
+.controle > .est-amostras {
+  grid-column: 1 / -1;
+}
+.est-amostras button {
+  width: var(--botao-icone);
+  height: var(--botao-icone);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--softpoint);
+  cursor: pointer;
+}
+.est-amostras button[aria-pressed="true"] {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+.est-amostras button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+
+/* elementos: marcadores; os que não cabem na metragem ficam apagados */
+.est-checks .marcador {
+  margin-bottom: var(--gap-xs);
+}
+.est-off {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.est-tv {
+  margin-top: var(--gap-md);
+}
+
+/* resumo */
+.est-resumo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-md);
+  padding: var(--gap-md) var(--gap-lg);
+  background: var(--ink3);
+  border-radius: var(--softpoint);
+}
+.est-resumo div {
+  font-size: var(--size-nota);
+  line-height: var(--lh-titulo);
+  color: var(--muted);
+}
+.est-resumo b {
+  display: block;
+  font-size: var(--size-card);
+  font-weight: 600;
+  color: var(--titulo);
+}
+
+.est-png {
+  margin-top: var(--gap-sm);
+}
+
+/* editor de superfície: primeira seção do painel, com contorno de seleção */
+.est-editor {
+  box-shadow: inset 3px 0 0 var(--acento-2);
+  background: var(--ink2);
+}
+.est-editor-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-md);
+}
+.est-editor-titulo {
+  margin-bottom: var(--gap-xs);
+}
+.est-editor-titulo::after {
+  display: none;
+}
+.est-editor-topo .nota {
+  margin: 0;
+}
+.est-fechar {
+  flex: none;
+  width: var(--botao-icone);
+  height: var(--botao-icone);
+  padding: 0;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: var(--size-card);
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+.est-fechar:hover {
+  background: var(--hover);
+  border-color: var(--hover);
+  color: var(--sobre-hover);
+}
+.est-fechar:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.est-imagens {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-xs);
+}
+.est-imagens button {
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--softpoint);
+  cursor: pointer;
+}
+.est-imagens img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.est-imagens button[aria-pressed="true"] {
+  outline: var(--foco) solid var(--acento-2);
+  outline-offset: 1px;
+}
+.est-imagens button:focus-visible {
+  outline: var(--foco) solid var(--acento);
+  outline-offset: 1px;
+}
+.est-upload {
+  margin-bottom: var(--gap-lg);
+}
+.est-acoes {
+  display: grid;
+  gap: var(--gap-sm);
+}

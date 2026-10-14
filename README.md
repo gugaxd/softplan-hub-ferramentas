@@ -52,6 +52,7 @@ softpoint-3d/              3D Studio (components/ e types/ em TypeScript, como n
 softpoint-resizer/         Softpoint Resizer — e o molde: copie para começar uma ferramenta
 gradient-studio/           Gradient Studio
 gerador-de-grids/          Gerador de grids
+gerador-de-estande/        Gerador de estande (HTML + JavaScript puro; só o cabeçalho é React)
 ```
 
 ## Ferramentas
@@ -62,6 +63,7 @@ gerador-de-grids/          Gerador de grids
 | `/softpoint-resizer/` | **Softpoint Resizer** — o Softpoint em qualquer largura, altura e raio, nas cores do DS. SVG e PNG. É a menor ferramenta completa do hub, e por isso o molde das novas. |
 | `/gradient-studio/` | **Gradient Studio** — feito a partir do gradient maker do the hub (mesmo motor: mesh animado, distorção, granulação, PNG, SVG, vídeo em loop e código CSS). Os presets são os nove renders oficiais do DS (`assets/gradients/`), refeitos como mesh editável por otimização sobre cada render; as cores ficam presas à paleta Softplan, com quatro intensidades (suave, original, intensa e noturna). |
 | `/gerador-de-grids/` | **Gerador de grids** — feito a partir do grid maker do the hub (mesma geometria: malha, ocupação de várias células, escalonamento, formas paramétricas, SVG próprio; exporta SVG vetorial e PNG). Começa no Softpoint, roxo 80 sobre roxo 10; as cores saem da paleta Softplan, com uma cor livre para casos fora da marca. |
+| `/gerador-de-estande/` | **Gerador de estande** — estande Softplan em 3D para eventos: 9 tipologias, metragem, elementos, e a arte de cada parede, testeira ou balcão (frase, imagem, produtos, cor, vídeo). Exporta GLB, OBJ + MTL e PNG. Feito pela equipe e recebido como HTML empacotado; desempacotado aqui, com o Three.js e todas as imagens servidos pelo hub — funciona offline. O vídeo da TV foi reduzido de 9,5 MB para 0,9 MB. |
 | `/softpoint-3d/` | **3D Studio** — softpoints e o S da Softplan em 3D (Three.js), com animação e exportação PNG, JPG e vídeo WebM. Cópia independente; o servidor de IA do original ficou de fora. As luzes de ambiente (8 HDRIs do Poly Haven, CC0, ~12 MB) ficam em `public/hdri/`: funciona sem internet. Cada peça pode ter forma e cor próprias. |
 
 As versões de `react`, `react-dom`, `three` e `@react-three/*` estão fixas no

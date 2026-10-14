@@ -1,6 +1,7 @@
 import imagemMask from "./assets/miniaturas/mask-studio.jpg";
 import imagem3D from "./assets/miniaturas/softpoint-3d.jpg";
 import imagemGradiente from "./assets/miniaturas/gradient-studio.jpg";
+import imagemEstande from "./assets/miniaturas/gerador-de-estande.jpg";
 
 /* Catálogo do hub — a única fonte da verdade do menu. Ferramenta nova entra aqui
    e o menu se monta sozinho; registre a pasta também em PAGINAS, no vite.config.js.
@@ -57,6 +58,15 @@ export const FERRAMENTAS = [
       "Grids modulares com o Softpoint e outras formas, ocupação de várias células e escalonamento progressivo.",
     formatos: ["SVG", "PNG"],
     url: "gerador-de-grids/",
+  },
+  {
+    id: "estande",
+    nome: "Gerador de estande",
+    descricao:
+      "Estandes Softplan para eventos e feiras em 3D: tipologia, medidas, elementos e a arte de cada parede.",
+    formatos: ["GLB", "OBJ", "PNG"],
+    url: "gerador-de-estande/",
+    imagem: imagemEstande,
   },
   {
     id: "breve",

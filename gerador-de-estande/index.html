@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="claro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de estande · Softplan</title>
+    <meta name="description" content="Estandes Softplan para eventos e feiras em 3D: tipologia, medidas, elementos e a arte de cada parede. Exporta GLB, OBJ e PNG." />
+    <!-- anti-piscada: aplica o tema salvo antes do primeiro CSS -->
+    <script>
+      try {
+        var t = localStorage.getItem("softplan-hub:tema");
+        if (t === "claro" || t === "escuro") document.documentElement.dataset.tema = t;
+      } catch (e) {}
+    </script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!-- prévia ao compartilhar o link: Teams, Slack, WhatsApp, LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hub de ferramentas Softplan" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Gerador de estande · Hub de ferramentas Softplan" />
+    <meta property="og:description" content="Estandes Softplan para eventos e feiras em 3D: tipologia, medidas, elementos e a arte de cada parede. Exporta GLB, OBJ e PNG." />
+    <meta property="og:url" content="%URL_DO_SITE%/gerador-de-estande/" />
+    <meta property="og:image" content="%URL_DO_SITE%/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Hub de ferramentas Softplan" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <!-- Interface em HTML + JavaScript puro, como no original da equipe; só o
+         cabeçalho do hub é React (montado em #cabecalho, em src/main.jsx). -->
+    <div class="ferramenta">
+      <aside class="painel">
+        <div id="cabecalho" class="est-cabecalho"></div>
+
+        <!-- editor de superfície: aparece ao clicar numa parede, testeira ou balcão -->
+        <section class="secao est-editor" id="editor" hidden aria-live="polite">
+          <div class="est-editor-topo">
+            <div>
+              <h2 class="secao-titulo est-editor-titulo" id="edTitulo"></h2>
+              <p class="nota" id="edDim"></p>
+            </div>
+            <button type="button" class="est-fechar" id="edFechar" aria-label="Fechar o editor">×</button>
+          </div>
+          <div class="est-campo">
+            <label class="rotulo" for="edTipo">Conteúdo</label>
+            <select id="edTipo" class="selecao est-largo"></select>
+          </div>
+          <div id="edCampos"></div>
+          <div class="est-acoes">
+            <button type="button" class="botao botao--primario" id="edTodas">Aplicar a todas as paredes</button>
+            <button type="button" class="botao" id="edReset">Voltar ao padrão</button>
+          </div>
+        </section>
+
+        <section class="secao">
+          <h2 class="secao-titulo">Tipologia</h2>
+          <select id="modelos" class="selecao est-largo" aria-label="Tipologia"></select>
+          <p class="nota est-nota-sob" id="modeloDesc"></p>
+          <p class="nota est-dica">Clique numa parede, testeira ou balcão do modelo para trocar a arte, a frase, a imagem ou a cor.</p>
+        </section>
+
+        <section class="secao">
+          <h2 class="secao-titulo">Metragem</h2>
+          <div class="est-presets" id="presets" role="group" aria-label="Metragens prontas"></div>
+          <div class="controle">
+            <label class="rotulo" for="w">Frente</label>
+            <output class="est-valor num" id="wOut" for="w"></output>
+            <input class="slider" type="range" id="w" min="2" max="14" step="0.5" />
+          </div>
+          <div class="controle">
+            <label class="rotulo" for="d">Profundidade</label>
+            <output class="est-valor num" id="dOut" for="d"></output>
+            <input class="slider" type="range" id="d" min="2" max="10" step="0.5" />
+          </div>
+          <div class="controle">
+            <label class="rotulo" for="alt">Altura</label>
+            <output class="est-valor num" id="altOut" for="alt"></output>
+            <input class="slider" type="range" id="alt" min="2.4" max="5" step="0.05" />
+          </div>
+          <div class="controle">
+            <span class="rotulo">Piso</span>
+            <div class="segmentado" data-chave="piso" role="group" aria-label="Piso">
+              <button type="button" data-v="claro">Carpete claro</button>
+              <button type="button" data-v="grafite">Grafite</button>
+              <button type="button" data-v="madeira">Madeira</button>
+            </div>
+          </div>
+          <div class="controle" id="campoCor">
+            <span class="rotulo">Cor da estrutura</span>
+            <div class="est-amostras" id="corEstrutura" role="group" aria-label="Cor da estrutura"></div>
+          </div>
+        </section>
+
+        <section class="secao">
+          <h2 class="secao-titulo">Elementos</h2>
+          <div class="est-checks" id="checks"></div>
+          <div class="controle est-tv">
+            <label class="rotulo" for="tvPol">Tamanho da TV</label>
+            <select id="tvPol" class="selecao" data-chave="tvPol" data-num="1">
+              <option value="43">43 polegadas</option>
+              <option value="55">55 polegadas</option>
+              <option value="65">65 polegadas</option>
+              <option value="75">75 polegadas</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="secao">
+          <h2 class="secao-titulo">Padrões</h2>
+          <div class="est-campo">
+            <label class="rotulo" for="tagline">Frase padrão das paredes</label>
+            <select id="tagline" class="selecao est-largo"></select>
+          </div>
+          <div class="est-campo" id="fraseLivre" hidden>
+            <label class="rotulo" for="fraseLivreTexto">Frase personalizada</label>
+            <input id="fraseLivreTexto" class="texto est-largo" type="text" data-chave="frase" placeholder="digite a frase" />
+          </div>
+          <div class="est-campo">
+            <label class="rotulo" for="eventoTexto">Nome do evento na testeira</label>
+            <input id="eventoTexto" class="texto est-largo" type="text" data-chave="evento" placeholder="opcional — ex.: Summit Cidades 2026" />
+          </div>
+        </section>
+
+        <section class="secao">
+          <h2 class="secao-titulo">Resumo</h2>
+          <div class="est-resumo">
+            <div><b class="num" id="rArea"></b>m² de área</div>
+            <div><b class="num" id="rPaineis"></b>painéis de arte</div>
+            <div><b class="num" id="rTesteira"></b>m linear de testeira</div>
+            <div><b class="num" id="rAltura"></b>m de altura</div>
+          </div>
+          <p class="nota est-nota-sob" id="nota"></p>
+        </section>
+
+        <section class="secao">
+          <h2 class="secao-titulo">Exportar</h2>
+          <div class="botoes">
+            <button type="button" class="botao botao--primario" data-exportar="glb">GLB</button>
+            <button type="button" class="botao" data-exportar="obj">OBJ + MTL</button>
+          </div>
+          <button type="button" class="botao est-largo est-png" data-exportar="png">Imagem PNG da vista atual</button>
+          <p class="nota est-nota-sob">GLB abre em qualquer ferramenta 3D (Blender, SketchUp, Keynote). O PNG sai com fundo transparente.</p>
+        </section>
+      </aside>
+
+      <main class="palco">
+        <div class="barra est-barra">
+          <span>Arraste para girar · role para aproximar · botão direito move · clique numa superfície para editar</span>
+        </div>
+        <div class="palco-area est-area">
+          <three-d-stage name="estande-softplan"></three-d-stage>
+          <p class="est-carregando" id="carregando">Montando o estande…</p>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/main.jsx"></script>
+  </body>
+</html>

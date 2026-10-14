@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 /* Um único site: o menu na raiz e cada ferramenta numa pasta própria, que vira
    uma página do build (minha-ferramenta/ → /minha-ferramenta/). Ferramenta nova
    entra aqui e no catálogo, em src/ferramentas.js. */
-const PAGINAS = ["mask-studio", "softpoint-3d", "softpoint-resizer", "gradient-studio", "gerador-de-grids"];
+const PAGINAS = ["mask-studio", "softpoint-3d", "softpoint-resizer", "gradient-studio", "gerador-de-grids", "gerador-de-estande"];
 
 /* Endereço público do hub, para as metatags og:* de todas as páginas (as redes
    só leem URL absoluta). Troque quando o domínio estiver definido. */
